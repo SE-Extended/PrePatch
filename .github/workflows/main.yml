@@ -3,7 +3,7 @@ name: SE Extended PrePatchs
 on:
   workflow_dispatch:
   schedule:
-    - cron: '45 11,23 * * *'
+    - cron: '45 * * * *'
 
 jobs:
   build:
@@ -88,4 +88,4 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ env.VERSION }}-PrePatch.apk
-          tag_name: ${{ env.VERSION }}-Stable
+          tag_name: ${{ env.VERSION }}
