@@ -45,14 +45,14 @@ jobs:
         working-directory: . 
 
       - name: Grant execute permissions to script
-        run: chmod +x script.sh
+        run: chmod +x downloader.sh
         working-directory: .  
 
-      - name: Run APK Download Script
+      - name: Run APK Downloader Script
         run: |
-         ./script.sh
+         ./downloader.sh
 
-      - name: Run the command
+      - name: Run The Java Command
         run: |
           java -jar lspatch.jar -m "$GITHUB_WORKSPACE/Core.apk" -f -l 2 -v snapchat.apk
 
@@ -67,7 +67,7 @@ jobs:
         run: |
           sleep 5
 
-      - name: Upload artifact
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.VERSION }}-PrePatch.apk
