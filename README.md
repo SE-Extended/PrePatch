@@ -13,5 +13,9 @@ SE Extended PrePatch is a repository designed to patch `Core.apk` into the lates
 Download & Install the latest release from ether [SE Extended PrePatch](https://t.me/SE_Extended_PrePatch) or the [Release Page](https://github.com/SE-Extended/PrePatch/releases),
 To update the PrePatch simply Download & Update 
 
+## 🙏 Credits
+- [LSPatch](https://github.com/LSPosed/LSPatch) (Used for Patching)
+- [APKMirror](https://www.apkmirror.com/) (Used to get snapchat apk)
+
 ## 📃 License
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-black.svg)](https://www.gnu.org/licenses/gpl-3.0)

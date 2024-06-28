@@ -10,33 +10,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up Java
+      - name: SETTING UP JAVA
         uses: actions/setup-java@v4
         with:
           distribution: 'adopt'
           java-version: '17'
 
-      - name: Set JAVA_HOME
+      - name: SETTING JAVA_HOME
         run: echo "JAVA_HOME=$(echo ${{ steps.setup-java.outputs.java-home }})" >> $GITHUB_ENV
 
-      - name: Set up Node.js
+      - name: SETTING UP NODE.JS
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Check out code
+      - name: CHECKING OUT CODE
         uses: actions/checkout@v4
 
-      - name: Install dependencies
+      - name: INSTALLING DEPENDENCIES
         run: |
           sudo apt-get update
           sudo apt-get install -y jq curl
         shell: bash
 
-      - name: Install unzip
+      - name: INSTALLING UNZIP
         run: sudo apt-get install unzip -y
 
-      - name: Install pup
+      - name: INSTALLING PUP
         run: |
          wget https://github.com/ericchiang/pup/releases/download/v0.4.0/pup_v0.4.0_linux_amd64.zip -O pup.zip
          unzip pup.zip
@@ -44,36 +44,29 @@ jobs:
          sudo mv pup /usr/local/bin/
         working-directory: . 
 
-      - name: Grant execute permissions to script
+      - name: GRANTING PERMISSIONS TO APK DOWNLOADER SCRIPT
         run: chmod +x downloader.sh
         working-directory: .  
 
-      - name: Run APK Downloader Script
+      - name: RUNNING APK DOWNLOADER SCRIPT
         run: |
          ./downloader.sh
 
-      - name: Run The Java Command
+      - name: RUNNING THE JAVA COMMAND
         run: |
           java -jar lspatch.jar -m "$GITHUB_WORKSPACE/Core.apk" -f -l 2 -v snapchat.apk
 
-      - name: Rename APK File
+      - name: RENAMING APK FILE
         run: |
           mv ./snapchat-402-lspatched.apk ./${{ env.VERSION }}-PrePatch.apk
 
-      - name: APK Path
-        run: echo "${PWD}./${{ env.VERSION }}-PrePatch.apk"
-
-      - name: Waiting..
-        run: |
-          sleep 5
-
-      - name: Upload Artifact
+      - name: UPLOADING APK ARTIFACT
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.VERSION }}-PrePatch.apk
           path: ./${{ env.VERSION }}-PrePatch.apk
 
-      - name: Does Release Exist?
+      - name: DOES THE RELEASE EXIST?
         id: check_release
         run: |
           RELEASE_VERSION=${{ env.VERSION }}
@@ -83,7 +76,7 @@ jobs:
           fi
           echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
 
-      - name: Creates or Updates Release
+      - name: CREATES OR UPDATES RELEASE
         id: create_release
         uses: softprops/action-gh-release@v2
         with:

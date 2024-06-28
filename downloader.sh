@@ -2,19 +2,19 @@
 
 UserAgent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
 
-# Get Latest Version
+# Get Latest Stable Version Of Snapchat
 page1=$(curl --fail-early --connect-timeout 2 --max-time 5 -sL -A "$UserAgent" "https://www.apkmirror.com/uploads/?appcategory=Snapchat" 2>&1)
 readarray -t versions < <(pup -p 'div.widget_appmanager_recentpostswidget h5 a.fontBlack text{}' <<<"$page1")
 
 for version in "${versions[@]}"; do
     if [[ ! "$version" == *"Beta" ]] && [[ ! "$version" == *"beta" ]]; then
-        # Extract version number and replace spaces and dots with hyphens
+        # Extract version number and replace spaces with hyphens
         version=$(echo "$version" | tr ' ' '-' | tr '.' '.' | tr '[:upper:]' '[:upper:]')
         echo "$version"
 
         echo "VERSION=$version" >> $GITHUB_ENV
 
-        # APK Drirect link 
+        # APK Direct link
         apkmirror_link="https://www.apkmirror.com/apk/snap-inc/snapchat/$version-release"
 
         page1=$(curl -vsL -A "$UserAgent" "$apkmirror_link" 2>&1)
