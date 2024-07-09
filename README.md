@@ -3,7 +3,7 @@
   
 [![SE Extended PrePatchs](https://github.com/SE-Extended/PrePatch/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/SE-Extended/PrePatch/actions/workflows/main.yml)
 ![Maintainer](https://img.shields.io/badge/maintainer-bocajthomas-black)<br/>
-[![GitHub release](https://img.shields.io/github/release/SE-Extended/PrePatch.svg)](https://github.com/SE-Extended/PrePatch/releases)
+[![GitHub release](https://img.shields.io/github/release/SE-Extended/PrePatch.svg)](https://github.com/SE-Extended/PrePatch/releases/)
 
 # SE Extended PrePatch
 SE Extended PrePatch is a repository designed to patch `Core.apk` into the latest stable version of Snapchat using LSPatch
