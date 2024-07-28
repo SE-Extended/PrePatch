@@ -41,7 +41,7 @@ for version in "${versions[@]}"; do
         [ "$url2" == "" ] && continue
         echo 66
 
-        url3=$(curl -sL -A "$UserAgent" "https://www.apkmirror.com$url2" | pup -p --charset UTF-8 'a[data-google-vignette="false"][rel="nofollow"] attr{href}')
+        url3=$(curl -sL -A "$UserAgent" "https://www.apkmirror.com$url2" | pup -p --charset UTF-8 'a[data-google-interstitial="false"][rel="nofollow"] attr{href}')
 
         [ "$url3" == "" ] && continue
         echo 100
