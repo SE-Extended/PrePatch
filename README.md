@@ -18,4 +18,4 @@ To update the PrePatch simply Download & Update
 - [APKMirror](https://www.apkmirror.com/) (Used to get snapchat apk)
 
 ## 📃 License
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-black.svg)](https://www.gnu.org/licenses/gpl-3.0)
+Core.apk is under License GPL v3 Only
