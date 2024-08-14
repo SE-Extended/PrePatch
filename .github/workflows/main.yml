@@ -53,11 +53,11 @@ jobs:
 
       - name: RUNNING THE JAVA COMMAND
         run: |
-          java -jar lspatch.jar -m "$GITHUB_WORKSPACE/Core.apk" -f -l 2 -v snapchat.apk
+          java -jar v0.6-419.jar -m "$GITHUB_WORKSPACE/Core.apk" -f -l 2 -v snapchat.apk
 
       - name: RENAMING APK FILE
         run: |
-          mv ./snapchat-402-lspatched.apk ./${{ env.VERSION }}-PrePatch.apk
+          mv ./snapchat-419-lspatched.apk ./${{ env.VERSION }}-PrePatch.apk
 
       - name: UPLOADING APK ARTIFACT
         uses: actions/upload-artifact@v4
