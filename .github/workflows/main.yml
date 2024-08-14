@@ -13,7 +13,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'adopt'
-          java-version: '17'
+          java-version: '21'
 
       - name: SETTING JAVA HOME
         run: echo "JAVA_HOME=$(echo ${{ steps.setup-java.outputs.java-home }})" >> $GITHUB_ENV
