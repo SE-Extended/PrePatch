@@ -103,4 +103,4 @@ jobs:
             *4. Press ether "Install" or "Update"*
             
             *Direct Download Link:*
-            https://github.com/bocajthomas/PrePatch/releases/download/${{ env.VERSION }}/${{ env.VERSION }}-PrePatch.apk
+            https://github.com/SE-Extended/PrePatch/releases/download/${{ env.VERSION }}/${{ env.VERSION }}-PrePatch.apk
