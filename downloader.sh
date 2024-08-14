@@ -11,10 +11,13 @@ for version in "${versions[@]}"; do
         # Extract version number and replace spaces with hyphens
         version=$(echo "$version" | tr ' ' '-' | tr '.' '.' | tr '[:upper:]' '[:upper:]')
         echo "$version"
-
         echo "VERSION=$version" >> $GITHUB_ENV
 
-        # APK Direct link
+        # Extract version and removes Snapchat and replaces the hyphen with a v
+        shortversion=$(echo "$version" | tr -d 'Snapchat' | tr '-' 'v')
+        echo "SHORTVERSION=$shortversion" >> $GITHUB_ENV
+
+        # Direct link for APK file
         apkmirror_link="https://www.apkmirror.com/apk/snap-inc/snapchat/$version-release"
 
         page1=$(curl -vsL -A "$UserAgent" "$apkmirror_link" 2>&1)
@@ -52,7 +55,7 @@ for version in "${versions[@]}"; do
         # Downloads the snapchat APK file and save it as snapchat.apk
         wget -U "$UserAgent" -O snapchat.apk "https://www.apkmirror.com$url3"
         if [ $? -eq 0 ]; then
-            echo "Snapchat APK Downloaded Successfully And Is Renamed To `snapchat.apk`"
+            echo "Snapchat APK Downloaded successfully and is renamed to snapchat.apk"
             exit 0
         else
             echo "Failed To Download Snapchat APK" >&2

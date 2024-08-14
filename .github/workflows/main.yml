@@ -6,9 +6,8 @@ on:
     - cron: '45 11,23 * * *'
 
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-latest
-
     steps:
       - name: SETTING UP JAVA
         uses: actions/setup-java@v4
@@ -16,7 +15,7 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
 
-      - name: SETTING JAVA_HOME
+      - name: SETTING JAVA HOME
         run: echo "JAVA_HOME=$(echo ${{ steps.setup-java.outputs.java-home }})" >> $GITHUB_ENV
 
       - name: SETTING UP NODE.JS
@@ -38,19 +37,19 @@ jobs:
 
       - name: INSTALLING PUP
         run: |
-         wget https://github.com/ericchiang/pup/releases/download/v0.4.0/pup_v0.4.0_linux_amd64.zip -O pup.zip
-         unzip pup.zip
-         chmod +x pup
-         sudo mv pup /usr/local/bin/
-        working-directory: . 
+          wget https://github.com/ericchiang/pup/releases/download/v0.4.0/pup_v0.4.0_linux_amd64.zip -O pup.zip
+          unzip pup.zip
+          chmod +x pup
+          sudo mv pup /usr/local/bin/
+        working-directory: .
 
-      - name: GRANTING PERMISSIONS TO APK DOWNLOADER SCRIPT
+      - name: GRANTING RUN PERMISSIONS TO APK DOWNLOADER SCRIPT
         run: chmod +x downloader.sh
-        working-directory: .  
+        working-directory: .
 
       - name: RUNNING APK DOWNLOADER SCRIPT
         run: |
-         ./downloader.sh
+          ./downloader.sh
 
       - name: RUNNING THE JAVA COMMAND
         run: |
@@ -66,19 +65,43 @@ jobs:
           name: ${{ env.VERSION }}-PrePatch.apk
           path: ./${{ env.VERSION }}-PrePatch.apk
 
-      - name: DOES THE RELEASE EXIST?
+      - name: CHECKING IF THE RELEASE EXISTS
         id: check_release
         run: |
           RELEASE_VERSION=${{ env.VERSION }}
-          if curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/releases/tags/$RELEASE_VERSION; then
-            echo "Release $RELEASE_VERSION already exists."
+          if curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/releases/tags/$RELEASE_VERSION &> /dev/null; then
             RELEASE_VERSION=$(echo $RELEASE_VERSION | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./')
+            echo "RELEASE_EXIST=yes" >> $GITHUB_OUTPUT 
+          else
+            echo "RELEASE_EXIST=no" >> $GITHUB_OUTPUT
           fi
           echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
+          echo "Does Release Exist: $RELEASE_EXIST"
 
-      - name: CREATES OR UPDATES RELEASE
+      - name: CREATING OR UPDATING THE RELEASE
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ env.VERSION }}-PrePatch.apk
           tag_name: ${{ env.VERSION }}
+
+      - name: SENDING RELEASE MESSAGE TO PREPATCH CHANNEL
+        if: steps.check_release.outputs.RELEASE_EXIST == 'no'
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{secrets.TELEGRAM_CHAT_ID}}
+          token: ${{secrets.TELEGRAM_TOKEN}}
+          disable_web_page_preview: true
+          format: markdown
+          message: |
+            *New Snapchat PrePatch!*
+            *${{ env.SHORTVERSION }}* 
+            
+            *How To Download:*
+            *1. Press the "Direct Download Link"*
+            *2. Wait for the download to finish*
+            *3. Press the download notification*
+            *4. Press ether "Install" or "Update"*
+            
+            *Direct Download Link:*
+            https://github.com/bocajthomas/PrePatch/releases/download/${{ env.VERSION }}/${{ env.VERSION }}-PrePatch.apk
