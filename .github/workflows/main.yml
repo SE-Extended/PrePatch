@@ -2,8 +2,8 @@ name: SE Extended PrePatchs
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '45 11,23 * * *'
+  #schedule:
+    #- cron: '45 11,23 * * *'
 
 jobs:
   Build:
