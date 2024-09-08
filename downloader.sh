@@ -4,7 +4,7 @@ UserAgent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, 
 
 # Get Latest Stable Version Of Snapchat
 page1=$(curl --fail-early --connect-timeout 2 --max-time 5 -sL -A "$UserAgent" "https://www.apkmirror.com/uploads/?appcategory=Snapchat" 2>&1)
-readarray -t versions < <(pup -p 'div.widget_appmanager_recentpostswidget h5 a.fontBlack text{}' <<<"$page1")
+readarray -t versions < <(pup -p 'div.widget.widget_appmanager_recentpostswidget div.appRow h5.appRowTitle.wrapText a.fontBlack text{}' <<<"$page1")
 
 for version in "${versions[@]}"; do
     if [[ ! "$version" == *"Beta" ]] && [[ ! "$version" == *"beta" ]]; then
