@@ -14,8 +14,8 @@ Download & Install the latest release from ether [SE Extended PrePatch](https://
 To update the PrePatch simply Download & Update 
 
 ## 🙏 Credits
-- [LSPatch](https://github.com/LSPosed/LSPatch) (Used for Patching)
-- [APKMirror](https://www.apkmirror.com/) (Used to get snapchat apk)
+- [JingMatrix/LSPatch](https://github.com/JingMatrix/LSPatch) | Used for Patching)
+- [APKMirror](https://www.apkmirror.com/) | Used to get snapchat apk
 
 ## 📃 License
 Core.apk is under License GPL v3 Only
