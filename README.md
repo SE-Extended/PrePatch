@@ -6,7 +6,7 @@
 [![GitHub release](https://img.shields.io/github/release/SE-Extended/PrePatch.svg)](https://github.com/SE-Extended/PrePatch/releases/)
 
 # SE Extended PrePatch
-SE Extended PrePatch is a repository designed to patch `Core.apk` into the latest stable version of Snapchat using LSPatch
+SE Extended PrePatch is a repository designed to patch `Core.apk` into the latest stable version of Snapchat using LSPatch.jar
 </div>
 
 ## ⬇️ Download
@@ -14,8 +14,8 @@ Download & Install the latest release from ether [SE Extended PrePatch](https://
 To update the PrePatch simply Download & Update 
 
 ## 🙏 Credits
-- [JingMatrix/LSPatch](https://github.com/JingMatrix/LSPatch) | Used for Patching)
-- [APKMirror](https://www.apkmirror.com/) | Used to get snapchat apk
+- [JingMatrix/LSPatch](https://github.com/JingMatrix/LSPatch) | Used for Patching
+- [APKMirror](https://www.apkmirror.com/uploads/?appcategory=Snapchat) | APK Source
 
 ## 📃 License
-Core.apk is under License GPL v3 Only
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-black.svg)](https://www.gnu.org/licenses/gpl-3.0)
